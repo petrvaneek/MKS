@@ -95,20 +95,21 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  uint8_t array [] = {1,0,1,0,1,0,0,1,1,1,0,1,1,1,0,1,1,1,0,0,1,0,1,0,1,0,0,0,0,0,0,0};
-  uint8_t i = 0;
-  uint32_t morse = 0b00000001010100111011101110010101;
-  while (1) {
 
-	  for (i = 0; i < sizeof(array); i++) {
+  while (1) {
+	  uint8_t array[] = {1,0,1,0,1,0,0,1,1,1,0,1,1,1,0,1,1,1,0,0,1,0,1,0,1,0,0,0,0,0,0,0};
+
+	  uint32_t morse = 0b00000001010100111011101110010101;
+
+	  for (uint8_t i = 0; i < sizeof(array); i++) {
 		  if (morse & (1UL << i)) {
 			  //GPIOA->BSRR = (1 << 5);
 			  LL_GPIO_SetOutputPin(LD2_GPIO_Port, LD2_Pin);
-			  LL_mDelay(200);
+
 		  } else {
 			  //GPIOA->BRR = (1 << 5);
 			  LL_GPIO_ResetOutputPin(LD2_GPIO_Port, LD2_Pin);
-			  LL_mDelay(200);
+
 			  /*if (array[i]== 1){
 				 LL_GPIO_SetOutputPin(LD2_GPIO_Port, LD2_Pin);
 				 LL_mDelay(200);
@@ -118,6 +119,7 @@ int main(void)
 				 LL_mDelay(200);
 				 } */
 		  }
+		  LL_mDelay(200);
 	  }
 
 	  /* USER CODE END WHILE */
