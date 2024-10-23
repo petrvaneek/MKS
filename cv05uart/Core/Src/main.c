@@ -115,22 +115,22 @@ static void uart_process_command(char *cmd)
 	else if(strcasecmp(token,"STATUS")==0)
 	{
 		if (HAL_GPIO_ReadPin(LED1_GPIO_Port, LED1_Pin))
-				{
-					printf("LED1 ON\n");
-				}
-				else
-				{
-					printf("LED1 OFF\n");
-				}
+		{
+			printf("LED1 ON\n");
+		}
+		else
+		{
+			printf("LED1 OFF\n");
+		}
 
-				if (HAL_GPIO_ReadPin(LED2_GPIO_Port, LED2_Pin))
-				{
-					printf("LED2 ON\n");
-				}
-				else
-				{
-					printf("LED2 OFF\n");
-				}
+		if (HAL_GPIO_ReadPin(LED2_GPIO_Port, LED2_Pin))
+		{
+			printf("LED2 ON\n");
+		}
+		else
+		{
+			printf("LED2 OFF\n");
+		}
 	}
 	else if(strcasecmp(token, "READ") == 0)
 	{
@@ -151,7 +151,8 @@ static void uart_process_command(char *cmd)
 		printf("OK\n");
 	}
 	else if (strcasecmp(token,"DUMP")==0)
-	{	uint8_t value[16];
+	{
+		uint8_t value[16];
 		HAL_I2C_Mem_Read(&hi2c1, EEPROM_ADDR, 0, I2C_MEMADD_SIZE_16BIT, value, 16, 1000);
 		for(uint8_t i =0;i<16;i++)
 		{
