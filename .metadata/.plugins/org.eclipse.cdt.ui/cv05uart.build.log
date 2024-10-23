@@ -1,4 +1,4 @@
-10:21:26 **** Incremental Build of configuration Debug for project cv05uart ****
+10:30:14 **** Incremental Build of configuration Debug for project cv05uart ****
 make -j4 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F030x8 -c -I../Core/Inc -I../Drivers/STM32F0xx_HAL_Driver/Inc -I../Drivers/STM32F0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
 arm-none-eabi-gcc -o "cv05uart.elf" @"objects.list"   -mcpu=cortex-m0 -T"C:\Temp\MKSVanek\MKS\cv05uart\STM32F030R8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="cv05uart.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
@@ -7,11 +7,11 @@ Finished building target: cv05uart.elf
 arm-none-eabi-size  cv05uart.elf 
 arm-none-eabi-objdump -h -S cv05uart.elf  > "cv05uart.list"
    text	   data	    bss	    dec	    hex	filename
-  18628	    104	   2520	  21252	   5304	cv05uart.elf
+  18660	    104	   2520	  21284	   5324	cv05uart.elf
 Finished building: default.size.stdout
  
 Finished building: cv05uart.list
  
 
-10:21:27 Build Finished. 0 errors, 0 warnings. (took 1s.102ms)
+10:30:15 Build Finished. 0 errors, 0 warnings. (took 1s.127ms)
 

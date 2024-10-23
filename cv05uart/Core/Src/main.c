@@ -155,8 +155,12 @@ static void uart_process_command(char *cmd)
 		HAL_I2C_Mem_Read(&hi2c1, EEPROM_ADDR, 0, I2C_MEMADD_SIZE_16BIT, value, 16, 1000);
 		for(uint8_t i =0;i<16;i++)
 		{
-
-			printf("Adresa 0x%04X = 0x%04X\n",i,value[i]);
+			//printf("Adresa 0x%04X = 0x%04X\n",i,value[i]);
+			if(i == 8)
+			{
+				printf("\n");
+			}
+			printf("%02X=%02X ",i,value[i]);
 		}
 		printf("\n");
 	}
