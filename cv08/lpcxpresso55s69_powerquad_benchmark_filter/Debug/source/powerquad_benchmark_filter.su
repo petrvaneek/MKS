@@ -1,0 +1,5 @@
+../source/powerquad_benchmark_filter.c:570:13:biquad_cascade_f32Test	1592	static
+../source/powerquad_benchmark_filter.c:267:13:arm_fir_f32Test	400	static
+../source/powerquad_benchmark_filter.c:225:13:arm_fir_q31Test	384	static
+../source/powerquad_benchmark_filter.c:114:5:main	224	static
+../source/powerquad_benchmark_filter.c:152:6:SysTick_Handler	0	static

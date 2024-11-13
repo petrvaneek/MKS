@@ -1,0 +1,4 @@
+C:\Temp\MKSVanek\MKS\lpcxpresso55s69_hello_world_2\drivers/fsl_ctimer.h:497:20:CTIMER_StartTimer	16	static
+../board/peripherals.c:138:13:CTIMER1_init	8	static
+../board/peripherals.c:151:6:BOARD_InitPeripherals	8	static
+../board/peripherals.c:160:6:BOARD_InitBootPeripherals	8	static

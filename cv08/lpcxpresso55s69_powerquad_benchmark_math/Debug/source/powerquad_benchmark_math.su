@@ -1,0 +1,2 @@
+../source/powerquad_benchmark_math.c:110:5:main	16	static
+../source/powerquad_benchmark_math.c:144:6:SysTick_Handler	0	static
