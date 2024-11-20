@@ -1,0 +1,10 @@
+../source/powerquad_benchmark_fft.c:602:13:arm_dct4_q31Test	10336	static
+../source/powerquad_benchmark_fft.c:542:13:arm_dct4_q15Test	5216	static
+../source/powerquad_benchmark_fft.c:425:13:arm_ifft_q31Test	12328	static
+../source/powerquad_benchmark_fft.c:316:13:arm_cfft_q31Test	12328	static
+../source/powerquad_benchmark_fft.c:368:13:arm_ifft_q15Test	6184	static
+../source/powerquad_benchmark_fft.c:264:13:arm_cfft_q15Test	6184	static
+../source/powerquad_benchmark_fft.c:214:13:arm_rfft_q31Test	12336	static
+../source/powerquad_benchmark_fft.c:164:13:arm_rfft_q15Test	6192	static
+../source/powerquad_benchmark_fft.c:109:5:main	8	static
+../source/powerquad_benchmark_fft.c:145:6:SysTick_Handler	0	static
