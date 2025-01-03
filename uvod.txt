@@ -1,0 +1,127 @@
+##########cv01########
+STM32CubeIDE, Git, základní funkce
+1 Zadání
+• Seznamte se s programem TortoiseGit. Založte si repozitář na Githubu, vytvořte pracovní kopii adresáře (Git
+Clone).
+• Seznamte se s vývojovou deskou NUCLEO-F030R8, modulem STMrel a prostředím STM32CubeIDE.
+• Vytvořte jednoduchou aplikaci, která bude blikat s diodou LD2. Otestujte na vývojové desce, ověřte ladění
+krokováním. Uložte vytvořenou aplikaci do repozitáře (Git Commit).
+• Vytvořte aplikaci, která bude realizovat blikání diodou LD2 dle předdefinovaného řetězce v morseovce.
+Commitujte do repozitáře. Následně kód upravte tak, aby byla sekvence morseovky zapsaná v jediné
+32bitové konstantě, commitujte do repozitáře.
+• Lokální repozitář uložte na server (Git Push).
+############cv02#############
+ISR, tlačítka se zákmity, časovač SysTick
+1 Zadání
+• Vytvořte nový projekt, nakonfigurujte LED1 a LED2 jako výstup, S1 a S2 jako vstup s interním pullupem.
+Povolte přerušení spouštěné sestupnou hranou na EXTI0 (tlačítko S2), vytvořte ISR, které provede negaci
+LED2.
+• Vytvořte kód, který bude blikat LED1 s periodou 300ms. Využijte časování založené na časovači SysTick.
+Obsluhu LED1 napište do funkce blikac(), tuto funkci volejte z main().
+• Vytvořte neblokující obsluhu tlačítek, která je bude číst s periodou 40 ms. Následně v obsluze zjišťujte stav
+tlačítek S1 a S2. Stav LED2 bude obsluhován na základě události tlačítka – po stisku S2 se rozsvítí na
+100ms, po stisku S1 na 1s. Obsluhu napište do funkce tlacitka(), její volání přidejte do main().
+• Obsluhu S1 upravte tak, aby se tlačítko vzorkovalo s periodou 5 ms. Stav tlačítka S1 shiftujte pomocí
+bitového posuvu vlevo do statické 16-bitové proměnné, o rozsvícení LED2 rozhodněte na základě stavu
+0x7FFF, který udává rozepnutí tlačítka s dozněním zákmitů.
+• Hodnocena bude i úprava zdrojového kódu, zejména odsazování bloků. V modulu main.c nesmí být žádné
+globální proměnné kromě Tick, kód main()u smí v hlavní nekonečné smyčce pouze volat úlohy blikac() a
+tlacitka().
+###########cv-03-############
+LED displej na posuvném registru
+1 Zadání
+• Vytvořte driver pro dvojici posuvných registrů SCT2024 na zásuvné desce.
+Driver bude v nezávislém modulu pro oddělený překlad. Bude obsahovat
+minimálně globální funkce sct_init() pro inicializaci hardwaru a
+sct_led(uint32_t value) pro nastavení svitu jednotlivých segmentů
+a LED dle bitových pozic hodnoty value. Driver otestujte.
+• Vytvořte sedmisegmentové znaky pro číslovky 0 až 9 na jednotlivých
+pozicích a funkci sct_value(uint16_t value) pro zobrazení čísla
+v rozsahu 000-999. Displej bude ukazovat hodnoty od 0 do 999 s krokem
+111.
+• Doplňte obsluhu rotačního enkodéru, pomocí které budete měnit hodnotu
+zobrazovanou na sedmisegmentovém displeji. Minimální hodnota
+enkodéru na displeji bude 0, maximální 150.
+• Hodnocena bude i úprava zdrojového kódu, zejména odsazování bloků.
+#########cv-04#############
+-A/D převodník a bargraf, Nakonfigurujte ADC na vývojové desce pro čtení údaje z trimru R2. Použijte driver sedmisegmentového
+displeje, na displej vypisujte pozici trimru přepočítanou na rozsah 0-500. Upravte driver tak, aby z LED nad
+displejem vytvořil osmistupňový bargraf. Průběh ukazatele bude lineární, musí umožňovat zobrazení od
+minimální do maximální hodnoty.
+• Pro hodnotu čtenou z ADC použijte filtraci pomocí exponenciální kumulace. Koeficient Q volte cca 12.
+• Přidejte mezi kanály ADC také interní referenci a interní teplotní čidlo. Po stisku S1 zobrazte na displeji
+vypočtené napájecí napětí AVCC s přesností na dvě desetinná místa. Po stisku S2 zobrazte teplotu
+mikrokontroléru ve °C. Po uvolnění tlačítka zůstane údaj zobrazený po 1 sekundu, poté se vrátí zpět na
+hodnotu trimru R2.
+• Hodnocena bude i úprava zdrojového kódu, zejména odsazování bloků.
+###########
+cv-05-UART komunikace s DMA, EEPROM na I2C
+##################
+ Vytvořte projekt s aktivním rozhraním USART2, realizujte loopback a
+ověřte funkci.
+• Rozšiřte obsluhu USARTu o využití DMA pro příjem v kruhovém
+módu. Otestujte zpětným výpisem přijatých příkazů.
+• Vytvořte parser pro jednoduchý textový protokol. Pomocí tohoto
+protokolu realizujte ovládání LED1 a LED2 na vývojovém kitu.
+• Doplňte podporu externí I2C EEPROM paměti. Rozšiřte protokol o
+funkci čtení a zápisu 8bitového čísla na definovanou adresu
+v EEPROM paměti. Implementujte příkaz pro vypsání (dump)
+prvních 16 bajtů externí paměti v hexadecimálním vyjádření včetně
+odřádkování po osmi bajtech
+######
+cv06-Teplotní čidla DS18B20 a NTC
+########
+Inicializujte 1-wire sběrnici a teplotní čidlo DS18B20 s pomocí dodané knihovny. Inicializujte
+sedmisegmentový LED displej. Periodicky spouštějte převod teploty a vypisujte ji na displeji.
+• Nakonfigurujte ADC pro čtení z NTC teplotního čidla typu NTCC-10K. Na základně údajů v datasheetu tohoto
+čidla vytvořte MATLABový skript pro generování lookup tabulky, která bude indexována hodnotou z AD
+převodníku a bude obsahovat přepočtenou skutečnou teplotu.
+• Do kódu doplňte funkci pro přepínání zobrazovaného údaje. Tlačítkem S2 se rozsvítí LED1 a zobrazí údaj
+z NTC, tlačítkem S1 se rozsvítí LED2 a zobrazí údaj z DS18B20.
+#####cv07###############
+Systém FreeRTOS a obsluha akcelerometru
+1 Zadání
+• Vytvořte projekt s aktivovanou podporou systému FreeRTOS. V základním systému poběží úloha vizualizace
+VisualTask, která čte frontu xVisualQueue a dle hodnot aktivuje dvojici LED diod LED1-LED2, a demo úloha
+AcceleroTask, která do fronty periodicky posílá testovací data tak, aby LED střídavě s prodlevou blikaly.
+• Doplňte do projektu driver akcelerometru LIS2DW12. Údaje z akcelerometru vypisujte v rámci úlohy
+AcceleroTask na sériový port. Upravte úlohu AcceleroTask tak, aby místo testovacích dat posílala do fronty
+údaje z osy X akcelerometru – LED diody tady budou svítit podle náklonu desky.
+#################cv08###########
+Maticová klávesnice a kódový zámek
+1 Zadání
+• Vytvořte jednoduchou aplikaci, která bude blikat jednou z LED diod na desce. Využijte prosté čekání.
+Otestujte na vývojové desce, ověřte ladění krokováním. Aktivujte Serial Wire Viewer, přesměrujte standardní
+výstup.
+• Připojte a implementujte maticovou klávesnici. Stisknutá tlačítka vypisuje v ladicím okně.
+• Vytvořte jednoduchý kódový zámek, který po zadání sekvence 7932# rozsvítí LED na desce. Doplňte timeout
+(cca 3s), po kterém se stavový automat kódového zámku vrátí do výchozího stavu.
+##################cv11###############
+USB myš standardu HID
+1 Zadání
+• Vytvořte projekt s podporou full-speed USB device třídy HID, integrujte
+příslušný middleware. Ověřte korektní enumeraci a nasimulujte pohyb myši
+po stisku tlačítka na vývojové desce.
+• Pro pohyb myši vytvořte funkci step(int x, int y, bool btn), která má jako
+parametry skoky v obou osách a vlajku, zda je stisknuto levé tlačítko. Dále
+vytvořte funkci circle(int radius), která pomocí myši vykreslí kružnici.
+S použitím uvedených funkcí vykreslete po stisku tlačítka kružnici, použijte
+program Malování.
+• Program rozšiřte tak, aby místo prosté kružnice vykreslil „smajlíka“, viz
+obrázek.
+########cvposledni#############
+wwwwww..uurreell..ffeeeecc..vvuuttbbrr..cczz uurreell@@ffeeeecc..vvuuttbbrr..cczz
+Mikrokontroléry a embedded systémy – cvičení
+Ethernet, TCP klient a server
+1 Zadání
+• Připojte vývojovou desku NUCLEO-F429ZI do lokální sítě, použijte
+FreeRTOS a lwIP. Vyzkoušejte ping desky. Implementujte tcpecho
+využívající netconn API.
+• Aktivujte HTTP server pro raw API, vytvořte základní souborový
+systém webových stránek a ověřte funkci.
+• Podle vzoru tcpecho vytvořte nový thread, zajišťující telnet server na
+portu 23. Implementujte ovládání LD1 až LD3 pomocí textového
+protokolu podobného jeho v cvičení UART komunikace s DMA,
+EEPROM na I2C.
+• Doplňte příkaz CLIENT, který se připojí jako HTTP klient na web
+http://www.urel.feec.vutbr.cz/ip.php a vypíše jeho obsah do terminálu.
