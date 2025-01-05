@@ -40,12 +40,15 @@ int main(void) {
         // Update the LEDs with the current LED count
         update_leds(led_count);
         
-        // Increment or decrement LED count based on direction (left to right or right to left)
-        if (led_count < 3) {
-            led_count++;
-        } else {
-            led_count--;
+       static int direction = 1;  // 1 pro zvýšení, -1 pro snížení
+
+        if (led_count == 3) {
+            direction = -1;  // Změna směru na snížení
+        } else if (led_count == 1) {
+            direction = 1;  // Změna směru na zvýšení
         }
+        
+        led_count += direction;
         
         HAL_Delay(delay_time);  // Delay between steps
     }
